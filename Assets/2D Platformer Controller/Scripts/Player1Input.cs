@@ -12,7 +12,7 @@ public class Player1Input : MonoBehaviour
 
     private void Update()
     {
-        Vector2 directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
         player.SetDirectionalInput(directionalInput);
 
         if (Input.GetButtonDown("Jump"))
