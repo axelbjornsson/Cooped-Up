@@ -8,8 +8,17 @@ public class Spawner : MonoBehaviour {
     
 	public float spawnDelay;
 	public Transform blockParent;
-    public int screenLength;
+    private float screenLength;
     private float nextSpawnTime;
+
+	/// <summary>
+	/// Start is called on the frame when a script is enabled just before
+	/// any of the Update methods is called the first time.
+	/// </summary>
+	void Start()
+	{
+		screenLength = GetComponentInParent<Camera>().orthographicSize;
+	}
 
     // Update is called once per frame
     void Update () {
@@ -22,8 +31,8 @@ public class Spawner : MonoBehaviour {
     private void Spawn()
     {
 		GameObject randSpawn = basics[Random.Range(0, basics.Count)];
-		Vector3 randPos = new Vector2(Random.Range(transform.position.x - screenLength/2, 
-												   transform.position.x + screenLength/2), 
+		Vector3 randPos = new Vector2(Random.Range(transform.position.x - screenLength, 
+												   transform.position.x + screenLength), 
 									  transform.position.y);
 
 		Instantiate(randSpawn, randPos, Quaternion.identity, blockParent);
