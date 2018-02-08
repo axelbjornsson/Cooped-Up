@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     [Tooltip("How fast should the character dash. Note: this only works on digging player type")]
     public float dashSpeed;
     private bool dashing;
+    private bool hasDashed;
 
     [Tooltip("to ignore the other player's rigidbody, we keep each other's colliders to ignore")]
     public BoxCollider2D otherPlayerCollider;
@@ -63,13 +64,17 @@ public class Player : MonoBehaviour
     private void Update()
     {
         CalculateVelocity();
-        HandleWallSliding();
+        if(playerType == PlayerType.jumper)
+        {
+            HandleWallSliding();
+        }
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
 
         if (controller.collisions.above || controller.collisions.below)
         {
             dashing = false;
+            hasDashed = false;
             velocity.y = 0f;
         }
     }
@@ -100,6 +105,7 @@ public class Player : MonoBehaviour
             }
             isDoubleJumping = false;
         }
+
         if (controller.collisions.below)
         {
             velocity.y = maxJumpVelocity;
@@ -112,9 +118,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Bounce(float bounciness)
+    {
+        velocity.y = maxJumpVelocity * bounciness;
+    }
+
     public void OnJumpInputUp()
     {
-        if (velocity.y > minJumpVelocity && !dashing)
+        if (velocity.y > minJumpVelocity)
         {
             velocity.y = minJumpVelocity;
         }
@@ -155,8 +166,13 @@ public class Player : MonoBehaviour
 
     public void Dash()
     {
-        dashing = true;
-        StartCoroutine(DashWait());
+        if(!hasDashed)
+        {
+            hasDashed = true;
+            dashing = true;
+            velocity.y = 0f;
+            StartCoroutine(DashWait());
+        }
     }
 
     System.Collections.IEnumerator DashWait()

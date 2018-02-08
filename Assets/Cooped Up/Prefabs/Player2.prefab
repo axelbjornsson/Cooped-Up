@@ -23,8 +23,10 @@ GameObject:
   - component: {fileID: 114800498825438994}
   - component: {fileID: 114230210418274502}
   - component: {fileID: 114398988867867364}
-  - component: {fileID: 114521847622158026}
   - component: {fileID: 212812628286534468}
+  - component: {fileID: 50612998530301534}
+  - component: {fileID: 114441925497689758}
+  - component: {fileID: 114767172746301122}
   m_Layer: 8
   m_Name: Player2
   m_TagString: Player
@@ -55,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1029060665601878}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: -1.47, z: 0}
+  m_LocalPosition: {x: 0.1, y: -1, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 4796384844860198}
@@ -75,6 +77,26 @@ Transform:
   m_Father: {fileID: 4744261723045156}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50612998530301534
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1029060665601878}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61126316155294026
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -157,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358435af10355764383764e4b0b0eee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114521847622158026
+--- !u!114 &114441925497689758
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -171,7 +193,18 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  otherPlayer: {fileID: 0}
+  bounciness: 1.3
+--- !u!114 &114767172746301122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1029060665601878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c68872175d7b048b92e726108a97c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114800498825438994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,6 +225,10 @@ MonoBehaviour:
   canDoubleJump: 0
   wallSlideSpeedMax: 3
   wallStickTime: 0.25
+  playerType: 0
+  controller: {fileID: 0}
+  dashSpeed: 20
+  otherPlayerCollider: {fileID: 0}
 --- !u!212 &212812628286534468
 SpriteRenderer:
   m_ObjectHideFlags: 1
