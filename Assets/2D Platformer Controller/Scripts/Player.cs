@@ -70,12 +70,25 @@ public class Player : MonoBehaviour
         }
         if(dashing)
         {
-            RaycastHit2D hit = Physics2D.Raycast(this.transform.position, directionalInput * 10f, 2f);
+            for (int i = 0; i < controller.horizontalRayCount; i++)
+            {
+                Vector2 rayOrigin = directionalInput.x == -1 ? controller.raycastOrigins.bottomLeft : controller.raycastOrigins.bottomRight;
+                rayOrigin += Vector2.up * (controller.horizontalRaySpacing * i);
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, directionalInput, 0.5f);
+
+                Debug.DrawRay(rayOrigin, directionalInput*5, Color.red);
+
+                if (hit.collider != null && hit.collider.gameObject.tag == "CompoundBlock")
+                {
+                    Destroy(hit.collider.gameObject);
+                }
+            }
+            /*RaycastHit2D hit = Physics2D.Raycast(this.transform.position, directionalInput * 10f, 0.5f);
             Debug.DrawRay(this.transform.position, directionalInput * 10f);
-            if (hit.collider != null && hit.collider.gameObject.tag == "Obstacle")
+            if (hit.collider != null && hit.collider.gameObject.tag == "CompoundBlock")
             {
                 Destroy(hit.collider.gameObject);
-            }
+            }*/
         }
 
         controller.Move(velocity * Time.deltaTime, directionalInput);

@@ -16,7 +16,13 @@ public class Block : MonoBehaviour {
 			var x = other.transform.GetComponent<Rigidbody2D>();
 			if (x == null || x.isKinematic)
 				this.GetComponent<Rigidbody2D>().isKinematic = true;
-		}
+
+            if (gameObject.tag == "BlockContainer")
+            {
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            }
+        }
 		if (other.transform.tag == "Player")
 		{
 			other.transform.GetComponent<GamePlayer>().Die();

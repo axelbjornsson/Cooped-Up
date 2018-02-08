@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Through
   - Obstacle
+  - CompoundBlock
+  - BlockContainer
   layers:
   - Default
   - TransparentFX
