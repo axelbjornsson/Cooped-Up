@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Death : MonoBehaviour {
     public float speed = 2f;
@@ -20,7 +18,9 @@ public class Death : MonoBehaviour {
 	/// <param name="other">The other Collider2D involved in this collision.</param>
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.transform.tag == "Player")
-			Debug.Log("RED AND DEAD");
-	}
+        if (other.transform.tag == "Player")
+		{
+			other.GetComponent<GamePlayer>().Die(); 
+		}
+    }
 }

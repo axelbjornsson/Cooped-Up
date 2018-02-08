@@ -8,7 +8,16 @@ public class Camera2Player : MonoBehaviour {
     public List<Transform> targets;
 
     public Vector3 offset;
+    private float defaultX;
 
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
+    {
+        defaultX = this.transform.position.x;
+    }
 
     private void Update()
     {
@@ -40,7 +49,7 @@ public class Camera2Player : MonoBehaviour {
     {
         if(targets.Count == 1)
         {
-            return targets[0].position;
+            return new Vector2(defaultX, targets[0].position.y);
         }
 
         var Bounds = new Bounds(targets[0].position, Vector3.zero);
@@ -50,6 +59,6 @@ public class Camera2Player : MonoBehaviour {
             Bounds.Encapsulate(targets[i].position);
         }
 
-        return Bounds.center;
+        return new Vector2(defaultX, Bounds.center.y);
     }
 }

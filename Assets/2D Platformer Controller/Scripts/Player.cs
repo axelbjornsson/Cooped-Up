@@ -63,10 +63,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         CalculateVelocity();
-        if(playerType == PlayerType.jumper)
-        {
-            HandleWallSliding();
-        }
+        HandleWallSliding();
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
 

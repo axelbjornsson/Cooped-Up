@@ -17,6 +17,10 @@ public class Block : MonoBehaviour {
 			if (x == null || x.isKinematic)
 				this.GetComponent<Rigidbody2D>().isKinematic = true;
 		}
+		if (other.transform.tag == "Player")
+		{
+			other.transform.GetComponent<GamePlayer>().Die();
+		}
 	}
 
 }
