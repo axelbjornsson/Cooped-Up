@@ -68,6 +68,15 @@ public class Player : MonoBehaviour
         {
             HandleWallSliding();
         }
+        if(dashing)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(this.transform.position, directionalInput * 10f, 2f);
+            Debug.DrawRay(this.transform.position, directionalInput * 10f);
+            if (hit.collider != null && hit.collider.gameObject.tag == "Obstacle")
+            {
+                Destroy(hit.collider.gameObject);
+            }
+        }
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
 
