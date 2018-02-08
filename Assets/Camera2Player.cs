@@ -9,6 +9,19 @@ public class Camera2Player : MonoBehaviour {
 
     public Vector3 offset;
 
+
+    private void Update()
+    {
+        for(int i = 0; i<targets.Count; i++)
+        {
+            if(targets[i] == null)
+            {
+                targets.RemoveAt(i);
+            }
+        }
+    }
+
+
 	void LateUpdate () {
 
         if(targets.Count == 0)
