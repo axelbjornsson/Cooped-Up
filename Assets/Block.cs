@@ -11,7 +11,7 @@ public class Block : MonoBehaviour {
 	/// <param name="other">The Collision2D data associated with this collision.</param>
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		if (other.transform.tag == "Obstacle")
+		if (other.transform.tag == "Obstacle" || other.transform.tag == "BlockContainer")
 		{
 			var x = other.transform.GetComponent<Rigidbody2D>();
 			if (x == null || x.isKinematic)
