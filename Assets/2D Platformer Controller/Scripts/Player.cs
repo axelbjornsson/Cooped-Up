@@ -3,6 +3,7 @@
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
+
     public float maxJumpHeight = 4f;
     public float minJumpHeight = 1f;
     public float timeToJumpApex = .4f;
@@ -19,6 +20,14 @@ public class Player : MonoBehaviour
 
     public float wallSlideSpeedMax = 3f;
     public float wallStickTime = .25f;
+
+    public enum PlayerType
+    {
+        digger,
+        jumper
+    }
+    public PlayerType playerType;
+
     private float timeToWallUnstick;
 
     private float gravity;
@@ -27,11 +36,19 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     private float velocityXSmoothing;
 
-    private Controller2D controller;
+    [HideInInspector]
+    public Controller2D controller;
 
     private Vector2 directionalInput;
     private bool wallSliding;
     private int wallDirX;
+
+    [Tooltip("How fast should the character dash. Note: this only works on digging player type")]
+    public float dashSpeed;
+    private bool dashing;
+
+    [Tooltip("to ignore the other player's rigidbody, we keep each other's colliders to ignore")]
+    public BoxCollider2D otherPlayerCollider;
 
     private void Start()
     {
@@ -39,17 +56,23 @@ public class Player : MonoBehaviour
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), otherPlayerCollider);
     }
 
     private void Update()
     {
         CalculateVelocity();
-        HandleWallSliding();
+        if(playerType == PlayerType.jumper)
+        {
+            HandleWallSliding();
+        }
 
         controller.Move(velocity * Time.deltaTime, directionalInput);
 
         if (controller.collisions.above || controller.collisions.below)
         {
+            dashing = false;
             velocity.y = 0f;
         }
     }
@@ -94,7 +117,7 @@ public class Player : MonoBehaviour
 
     public void OnJumpInputUp()
     {
-        if (velocity.y > minJumpVelocity)
+        if (velocity.y > minJumpVelocity && !dashing)
         {
             velocity.y = minJumpVelocity;
         }
@@ -133,10 +156,30 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Dash()
+    {
+        dashing = true;
+        StartCoroutine(DashWait());
+    }
+
+    System.Collections.IEnumerator DashWait()
+    {
+        yield return new WaitForSeconds(0.15f);
+        dashing = false;
+    }
+    
+
     private void CalculateVelocity()
     {
-        float targetVelocityX = directionalInput.x * moveSpeed;
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne));
-        velocity.y += gravity * Time.deltaTime;
+        if(dashing)
+        {
+            velocity.x = directionalInput.x * dashSpeed;
+        }
+        else
+        {
+            float targetVelocityX = directionalInput.x * moveSpeed;
+            velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne));
+            velocity.y += gravity * Time.deltaTime;
+        }
     }
 }

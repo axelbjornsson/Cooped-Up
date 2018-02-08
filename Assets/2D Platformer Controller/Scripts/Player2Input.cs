@@ -24,5 +24,10 @@ public class Player2Input : MonoBehaviour
         {
             player.OnJumpInputUp();
         }
+
+        if(Input.GetButtonDown("Jump2") && !player.controller.collisions.below)
+        {
+            player.Dash();
+        }
     }
 }
