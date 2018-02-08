@@ -19,8 +19,7 @@ public class Block : MonoBehaviour {
 
             if (gameObject.tag == "BlockContainer")
             {
-                gameObject.GetComponent<BoxCollider2D>().enabled = false;
-                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                gameObject.GetComponent<Collider2D>().enabled = false;
             }
         }
 		if (other.transform.tag == "Player")
