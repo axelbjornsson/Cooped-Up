@@ -24,7 +24,11 @@ public class Block : MonoBehaviour {
         }
 		if (other.transform.tag == "Player")
 		{
-			other.transform.GetComponent<GamePlayer>().Die();
+            Player player = other.transform.GetComponent<Player>();
+            if(player.controller.collisions.below)
+            {
+                other.transform.GetComponent<GamePlayer>().Die();
+            }
 		}
 	}
 

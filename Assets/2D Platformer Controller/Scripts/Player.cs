@@ -180,6 +180,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnBecameInvisible()
+    {
+        transform.position = new Vector2(-transform.position.x, transform.position.y);
+    }
+
     public void Dash()
     {
         if(!hasDashed)
