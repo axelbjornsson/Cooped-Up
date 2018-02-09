@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         }
         if(dashing)
         {
-            for (int i = 0; i < controller.horizontalRayCount; i++)
+            for (int i = -2; i < controller.horizontalRayCount; i++)
             {
                 Vector2 rayOrigin = directionalInput.x == -1 ? controller.raycastOrigins.bottomLeft : controller.raycastOrigins.bottomRight;
                 rayOrigin += Vector2.up * (controller.horizontalRaySpacing * i);
@@ -80,15 +80,9 @@ public class Player : MonoBehaviour
 
                 if (hit.collider != null && hit.collider.gameObject.tag == "CompoundBlock")
                 {
-                    Destroy(hit.collider.gameObject);
+                    hit.collider.GetComponent<BaseBlock>().DisableBlock();
                 }
             }
-            /*RaycastHit2D hit = Physics2D.Raycast(this.transform.position, directionalInput * 10f, 0.5f);
-            Debug.DrawRay(this.transform.position, directionalInput * 10f);
-            if (hit.collider != null && hit.collider.gameObject.tag == "CompoundBlock")
-            {
-                Destroy(hit.collider.gameObject);
-            }*/
         }
 
         controller.Move(velocity * Time.deltaTime, directionalInput);

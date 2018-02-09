@@ -176,7 +176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &93398150
 Transform:
   m_ObjectHideFlags: 0
@@ -443,10 +443,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basics:
-  - {fileID: 1964380677637792, guid: e38a16bd5a9bf804785d5642919ea7f9, type: 2}
-  - {fileID: 1606690319490280, guid: bb60169b6ed0ea34e91e81d54ab96636, type: 2}
-  - {fileID: 1892346679827390, guid: 0fb7b8459f152b348a5307ef42af6ab5, type: 2}
-  - {fileID: 1597322251680920, guid: 9981f5cbdb452c4439b6748d48997d14, type: 2}
+  - {fileID: 1029892595128118, guid: 0fb7b8459f152b348a5307ef42af6ab5, type: 2}
+  - {fileID: 1043224809897798, guid: bb60169b6ed0ea34e91e81d54ab96636, type: 2}
+  - {fileID: 1193600849188756, guid: 55f1bcf492477044daef91e24897b153, type: 2}
+  - {fileID: 1267733065124002, guid: e0509339a4218a54380262db6df77e4d, type: 2}
   spawnDelay: 1.5
   blockParent: {fileID: 742108749}
 --- !u!1001 &1171670098
