@@ -160,6 +160,7 @@ public class Player : MonoBehaviour
 
     public void Bounce(float bounciness)
     {
+        if (anim) anim.SetTrigger("Bounce");
         velocity.y = maxJumpVelocity * bounciness;
     }
 
@@ -175,9 +176,11 @@ public class Player : MonoBehaviour
     {
         wallDirX = (controller.collisions.left) ? -1 : 1;
         wallSliding = false;
+        if (anim) anim.SetBool("WallSliding", false);
         if ((controller.collisions.left || controller.collisions.right) && !controller.collisions.below && velocity.y < 0)
         {
             wallSliding = true;
+            if (anim) anim.SetBool("WallSliding", true);
 
             if (velocity.y < -wallSlideSpeedMax)
             {
@@ -213,6 +216,7 @@ public class Player : MonoBehaviour
     {
         if(!hasDashed)
         {
+            if (anim) anim.SetBool("Dashing", true);
             hasDashed = true;
             dashing = true;
             velocity.y = 0f;
@@ -223,6 +227,7 @@ public class Player : MonoBehaviour
     System.Collections.IEnumerator DashWait()
     {
         yield return new WaitForSeconds(0.15f);
+        if (anim) anim.SetBool("Dashing", false);
         dashing = false;
     }
     

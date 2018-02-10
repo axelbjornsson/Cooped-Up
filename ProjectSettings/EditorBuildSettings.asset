@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/2D Platformer Controller/Scenes/Demo.unity
-    guid: 00000000000000000000000000000000
+    path: Assets/Cooped Up/Scenes/valliscene.unity
+    guid: 5bc0deee4e1d36946abc6edaa9017af0

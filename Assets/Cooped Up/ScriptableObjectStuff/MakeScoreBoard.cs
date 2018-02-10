@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if (UNITY_EDITOR)
+using UnityEngine;
 using UnityEditor;
 
 public class YourClassAsset
@@ -9,3 +10,4 @@ public class YourClassAsset
         ScriptableObjectUtility.CreateAsset<ScoreBoard>();
     }
 }
+#endif
