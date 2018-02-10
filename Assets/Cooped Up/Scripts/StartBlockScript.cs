@@ -21,12 +21,12 @@ public class StartBlockScript : MonoBehaviour {
 	
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.name == "StartPlayer1")
+        if (coll.gameObject.name == "StartPlayer1" || coll.gameObject.name == "HiScorePlayer1")
         {
             p1Selected = true;
             isSelected = true;
         }
-        else if (coll.gameObject.name == "StartPlayer2")
+        else if (coll.gameObject.name == "StartPlayer2" || coll.gameObject.name == "HiScorePlayer2")
         {
             p2Selected = true;
             isSelected = true;
@@ -35,11 +35,11 @@ public class StartBlockScript : MonoBehaviour {
 
     void OnCollisionExit2D(Collision2D coll)
     {
-        if (coll.gameObject.name == "StartPlayer1")
+        if (coll.gameObject.name == "StartPlayer1" || coll.gameObject.name == "HiScorePlayer1")
         {
             p1Selected = false;
         }
-        else
+        else if (coll.gameObject.name == "StartPlayer2" || coll.gameObject.name == "HiScorePlayer2")
         {
             p2Selected = false;
         }

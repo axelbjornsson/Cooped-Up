@@ -1,7 +1,15 @@
 ﻿using UnityEngine;
 
 public class Death : MonoBehaviour {
-    public float speed = 2f;
+    public float initialSpeed = 2f;
+
+    private float speed;
+    
+    public void Reset()
+    {
+        transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
+        speed = initialSpeed;
+    }
 
     // Update is called once per frame
     void Update () {
@@ -20,7 +28,8 @@ public class Death : MonoBehaviour {
 	{
         if (other.transform.tag == "Player")
 		{
-			other.GetComponent<GamePlayer>().Die(); 
+            GameObject.Find("GameManager").GetComponent<GameController>().GameOver();
+			//other.GetComponent<GamePlayer>().Die(); 
 		}
     }
 }
