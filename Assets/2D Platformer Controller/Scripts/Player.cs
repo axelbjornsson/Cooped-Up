@@ -209,7 +209,11 @@ public class Player : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        transform.position = new Vector2(-transform.position.x, transform.position.y);
+        float worldToScreenX = Camera.main.WorldToScreenPoint(transform.position).x;
+        if (worldToScreenX > Camera.main.pixelWidth || worldToScreenX < 0)
+        {
+            transform.position = new Vector2(-transform.position.x, transform.position.y);
+        }
     }
 
     public void Dash()
