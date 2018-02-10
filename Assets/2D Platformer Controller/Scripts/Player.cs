@@ -4,12 +4,15 @@
 public class Player : MonoBehaviour
 {
 
+    private Animator anim;
+
     public float maxJumpHeight = 4f;
     public float minJumpHeight = 1f;
     public float timeToJumpApex = .4f;
     private float accelerationTimeAirborne = .2f;
     private float accelerationTimeGrounded = .1f;
     private float moveSpeed = 6f;
+    private bool flipX;
 
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpOff;
@@ -53,6 +56,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -63,6 +67,23 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if(directionalInput.x > 0)
+        {
+            if(flipX != true)
+            {
+                flipX = true;
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+        }
+        else if(directionalInput.x < 0)
+        {
+            if (flipX != false)
+            {
+                flipX = false;
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+        }
+
         CalculateVelocity();
         if(playerType == PlayerType.jumper)
         {
@@ -91,6 +112,7 @@ public class Player : MonoBehaviour
         {
             dashing = false;
             hasDashed = false;
+            if (anim) anim.SetBool("Grounded", true);
             velocity.y = 0f;
         }
     }
@@ -124,11 +146,13 @@ public class Player : MonoBehaviour
 
         if (controller.collisions.below)
         {
+            if (anim) anim.SetBool("Grounded", false);
             velocity.y = maxJumpVelocity;
             isDoubleJumping = false;
         }
         if (canDoubleJump && !controller.collisions.below && !isDoubleJumping && !wallSliding)
         {
+            if (anim) anim.SetTrigger("DoubleJump");
             velocity.y = maxJumpVelocity;
             isDoubleJumping = true;
         }
@@ -215,5 +239,7 @@ public class Player : MonoBehaviour
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne));
             velocity.y += gravity * Time.deltaTime;
         }
+
+        if (anim) anim.SetFloat("Velocity X", Mathf.Abs(velocity.x));
     }
 }
