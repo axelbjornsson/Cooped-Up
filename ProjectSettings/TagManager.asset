@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - CompoundBlock
   - BlockContainer
+  - Spawner
   layers:
   - Default
   - TransparentFX

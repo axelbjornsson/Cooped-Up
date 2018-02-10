@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         }
         if(dashing)
         {
-            for (int i = -2; i < controller.horizontalRayCount; i++)
+            for (int i = -1; i < controller.horizontalRayCount+1; i++)
             {
                 Vector2 rayOrigin = directionalInput.x == -1 ? controller.raycastOrigins.bottomLeft : controller.raycastOrigins.bottomRight;
                 rayOrigin += Vector2.up * (controller.horizontalRaySpacing * i);

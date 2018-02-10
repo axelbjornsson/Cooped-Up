@@ -6,6 +6,8 @@ public class BaseBlock : MonoBehaviour {
 
 	public void DisableBlock()
     {
+        Camera.main.GetComponent<Animator>().Play("Shake");
+
         Color colorIncrement = new Color(0.3f, 0.3f, 0.3f, 0f);
         GetComponent<SpriteRenderer>().color -=  colorIncrement;
 

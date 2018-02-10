@@ -42,7 +42,7 @@ public class Camera2Player : MonoBehaviour {
 
         Vector3 newPos = centerPoint + offset;
 
-        transform.position = newPos;
+        transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
 	}
 
     Vector3 GetCenterPoint()
@@ -59,6 +59,6 @@ public class Camera2Player : MonoBehaviour {
             Bounds.Encapsulate(targets[i].position);
         }
 
-        return new Vector2(defaultX, Bounds.center.y);
+        return new Vector3(defaultX, Bounds.center.y);
     }
 }
