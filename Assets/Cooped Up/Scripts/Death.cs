@@ -2,6 +2,7 @@
 
 public class Death : MonoBehaviour {
     public float initialSpeed = 2f;
+    public float acceleration = 0.01f;
 
     private float speed;
     
@@ -15,7 +16,7 @@ public class Death : MonoBehaviour {
     void Update () {
 		var x = this.transform.localScale;
 		x.y += speed * Time.deltaTime;
-		speed *= 1.001f;
+		speed += acceleration;
 		this.transform.localScale = x;
 	}
 

@@ -251,4 +251,9 @@ public class Player : MonoBehaviour
 
         if (anim) anim.SetFloat("Velocity X", Mathf.Abs(velocity.x));
     }
+
+    private void OnEnable()
+    {
+        dashing = false;
+    }
 }

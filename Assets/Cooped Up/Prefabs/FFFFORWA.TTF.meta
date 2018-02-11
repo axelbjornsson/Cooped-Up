@@ -14,9 +14,9 @@ TrueTypeFontImporter:
   fontNames:
   - FFF Forward
   fallbackFontReferences:
-  - {fileID: 12800000, guid: e82095fb4e4a6294daad688c6c2e863f, type: 3}
+  - {instanceID: 0}
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   userData: 

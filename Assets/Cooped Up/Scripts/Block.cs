@@ -14,8 +14,11 @@ public class Block : MonoBehaviour {
 		if (other.transform.tag == "Obstacle" || other.transform.tag == "BlockContainer" || other.transform.tag == "CompoundBlock")
 		{
 			var x = other.transform.GetComponent<Rigidbody2D>();
-			if (x == null || x.isKinematic)
-				this.GetComponent<Rigidbody2D>().isKinematic = true;
+            if(x == null || x.isKinematic)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                this.GetComponent<Rigidbody2D>().isKinematic = true;
+            }
 
             if (gameObject.tag == "BlockContainer")
             {
@@ -32,5 +35,23 @@ public class Block : MonoBehaviour {
             }
 		}
 	}
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.transform.tag == "Obstacle" || other.transform.tag == "BlockContainer" || other.transform.tag == "CompoundBlock")
+        {
+            var x = other.transform.GetComponent<Rigidbody2D>();
+            if (x == null || x.isKinematic)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                this.GetComponent<Rigidbody2D>().isKinematic = true;
+            }
+
+            if (gameObject.tag == "BlockContainer")
+            {
+                gameObject.GetComponent<Collider2D>().enabled = false;
+            }
+        }
+    }
 
 }

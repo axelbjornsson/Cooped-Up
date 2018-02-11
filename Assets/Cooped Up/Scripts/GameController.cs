@@ -6,6 +6,11 @@ public class GameController : MonoBehaviour {
 
     public ScoreBoard scoreBoard;
 
+    //0: start screen
+    //1: main screen
+    //2: hiscore screen
+    byte state;
+
     [System.Serializable]
     public class BackgroundColors : System.Object
     {
@@ -36,6 +41,7 @@ public class GameController : MonoBehaviour {
     private Vector2[] playerPositions;
 	// Use this for initialization
 	void Start () {
+        state = 0;
 
         Camera.main.backgroundColor = colors.mainMenuColor;
         Camera.main.GetComponent<Camera2Player>().enabled = false;
@@ -51,14 +57,29 @@ public class GameController : MonoBehaviour {
 	void Update () {
         if(highestPoint.y < Camera.main.transform.position.y && referenceObjects.mainGameScreen.activeSelf)
         {
-            Camera.main.backgroundColor = Color.Lerp(colors.originalColor, colors.targetColor, (highestPoint.y - originalPoint.y)/150);
+            Camera.main.backgroundColor = Color.Lerp(colors.originalColor, colors.targetColor, (highestPoint.y - originalPoint.y)/250);
             highestPoint = Camera.main.transform.position;
         }
-        //CheckWrapping();
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        if(state == 0 || state == 2)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.R))
+            {
+                StartGame();
+            }
+        }
 	}
 
     public void StartGame()
     {
+        state = 1;
+
+        Camera.main.backgroundColor = colors.originalColor;
+
         Camera.main.GetComponent<Camera2Player>().enabled = true;
 
         referenceObjects.mainGameScreen.SetActive(true);
@@ -70,6 +91,8 @@ public class GameController : MonoBehaviour {
 
     public void GameOver()
     {
+        state = 2;
+
         Camera.main.backgroundColor = colors.hiScoreScreenColor;
 
         referenceObjects.mainGameScreen.SetActive(false);
@@ -108,22 +131,7 @@ public class GameController : MonoBehaviour {
         referenceObjects.players[0].gameObject.SetActive(true);
         referenceObjects.players[1].position = playerPositions[1];
         referenceObjects.players[1].gameObject.SetActive(true);
+        
+        referenceObjects.spawner.GetComponent<Spawner>().Reset();
     }
-
-    /*
-    void CheckWrapping()
-    {
-        foreach(Transform t in players)
-        {
-            if (t.position.x < xMin)
-            {
-                t.position = new Vector2(xMax, t.position.y);
-            }
-            else if (t.position.x > xMax)
-            {
-                t.position = new Vector2(xMin, t.position.y);
-            }
-        }
-    }
-    */
 }
