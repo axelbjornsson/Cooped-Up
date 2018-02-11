@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: 59ea3a042e90cd040aa7409e66a5605a
-timeCreated: 1518291541
+guid: ed40e9ac4c3521445a35ca2e83e032f4
+timeCreated: 1518310661
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: P2Walk_0
-    21300002: P2Walk_1
+    21300000: P2Dash 1_0
+    21300002: P2Dash 1_1
+    21300004: P2Dash 1_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -62,7 +63,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -72,7 +73,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,7 +83,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -92,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,7 +103,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: P2Walk_0
+      name: P2Dash 1_0
       rect:
         serializedVersion: 2
         x: 7
         y: 36
-        width: 19
-        height: 23
+        width: 18
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,13 +127,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: P2Walk_1
+      name: P2Dash 1_1
       rect:
         serializedVersion: 2
-        x: 6
+        x: 38
+        y: 36
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: P2Dash 1_2
+      rect:
+        serializedVersion: 2
+        x: 4
         y: 4
         width: 20
-        height: 22
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

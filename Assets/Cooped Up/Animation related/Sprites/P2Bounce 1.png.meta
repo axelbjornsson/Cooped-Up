@@ -1,13 +1,12 @@
 fileFormatVersion: 2
-guid: 3f753fd303167a24cb10a635691fe65c
-timeCreated: 1518291527
+guid: cc9e1a187b0494f4299ad8b7085c7b97
+timeCreated: 1518310743
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: P2Jump_0
-    21300002: P2Jump_1
-    21300004: P2Jump_2
-    21300006: P2Jump_3
+    21300000: P2Bounce 1_0
+    21300002: P2Bounce 1_1
+    21300004: P2Bounce 1_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -64,7 +63,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -74,7 +73,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -84,7 +83,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -104,7 +103,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -114,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: P2Jump_0
+      name: P2Bounce 1_0
       rect:
         serializedVersion: 2
         x: 7
@@ -128,13 +127,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: P2Jump_1
+      name: P2Bounce 1_1
       rect:
         serializedVersion: 2
-        x: 37
+        x: 38
         y: 36
         width: 21
-        height: 21
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,27 +141,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: P2Jump_2
+      name: P2Bounce 1_2
       rect:
         serializedVersion: 2
         x: 8
         y: 4
         width: 16
         height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: P2Jump_3
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 4
-        width: 17
-        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

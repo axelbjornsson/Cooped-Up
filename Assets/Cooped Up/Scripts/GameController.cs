@@ -49,7 +49,6 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("mainGameEnabled: " + (referenceObjects.mainGameScreen.activeSelf));
         if(highestPoint.y < Camera.main.transform.position.y && referenceObjects.mainGameScreen.activeSelf)
         {
             Camera.main.backgroundColor = Color.Lerp(colors.originalColor, colors.targetColor, (highestPoint.y - originalPoint.y)/150);

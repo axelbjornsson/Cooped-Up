@@ -1,12 +1,13 @@
 fileFormatVersion: 2
-guid: 8c56b58beddf8334d8e608c1f18a0d80
-timeCreated: 1518279764
+guid: 88a2841cf2d7ad942a458a23f8b49294
+timeCreated: 1518310606
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Double Jump_0
-    21300002: Double Jump_1
-    21300004: Double Jump_2
+    21300000: P2Jump 1_0
+    21300002: P2Jump 1_1
+    21300004: P2Jump 1_2
+    21300006: P2Jump 1_3
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -63,7 +64,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -73,7 +74,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -83,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -93,7 +94,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,7 +104,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,7 +114,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Double Jump_0
+      name: P2Jump 1_0
       rect:
         serializedVersion: 2
         x: 7
@@ -127,13 +128,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Double Jump_1
+      name: P2Jump 1_1
       rect:
         serializedVersion: 2
-        x: 38
+        x: 37
         y: 36
         width: 21
-        height: 19
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,12 +142,26 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Double Jump_2
+      name: P2Jump 1_2
       rect:
         serializedVersion: 2
-        x: 9
+        x: 8
         y: 4
-        width: 15
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: P2Jump 1_3
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 4
+        width: 17
         height: 25
       alignment: 0
       pivot: {x: 0, y: 0}

@@ -1,12 +1,11 @@
 fileFormatVersion: 2
-guid: 80972dc17e5536649b64ef0fcee29f47
-timeCreated: 1518291511
+guid: 7363d24eb0cf5234aad32e6d58441a45
+timeCreated: 1518308559
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: P2Dash_0
-    21300002: P2Dash_1
-    21300004: P2Dash_2
+    21300000: P1 Walk_0
+    21300002: P1 Walk_1
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -60,50 +59,50 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: P2Dash_0
+      name: P1 Walk_0
       rect:
         serializedVersion: 2
-        x: 7
+        x: 5
         y: 36
-        width: 18
-        height: 24
+        width: 21
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,27 +126,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: P2Dash_1
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 36
-        width: 19
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: P2Dash_2
+      name: P1 Walk_1
       rect:
         serializedVersion: 2
         x: 4
         y: 4
-        width: 20
-        height: 26
+        width: 21
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
