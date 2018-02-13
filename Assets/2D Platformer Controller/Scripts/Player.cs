@@ -42,7 +42,8 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public Controller2D controller;
 
-    private Vector2 directionalInput;
+    [HideInInspector]
+    public Vector2 directionalInput;
     private bool wallSliding;
     private int wallDirX;
 
@@ -53,6 +54,9 @@ public class Player : MonoBehaviour
 
     [Tooltip("to ignore the other player's rigidbody, we keep each other's colliders to ignore")]
     public BoxCollider2D otherPlayerCollider;
+
+    [HideInInspector]
+    public int blockColliderCount;
 
     private void Start()
     {
@@ -230,7 +234,10 @@ public class Player : MonoBehaviour
 
     System.Collections.IEnumerator DashWait()
     {
-        yield return new WaitForSeconds(0.15f);
+        float originalVelocity = velocity.x;
+        velocity.x = directionalInput.x * dashSpeed;
+        yield return new WaitForSeconds(0.1f);
+        velocity.x = originalVelocity;
         if (anim) anim.SetBool("Dashing", false);
         dashing = false;
     }
@@ -238,12 +245,8 @@ public class Player : MonoBehaviour
 
     private void CalculateVelocity()
     {
-        if(dashing)
-        {
-            velocity.x = directionalInput.x * dashSpeed;
-        }
-        else
-        {
+        
+        if(!dashing){
             float targetVelocityX = directionalInput.x * moveSpeed;
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne));
             velocity.y += gravity * Time.deltaTime;
@@ -255,5 +258,23 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         dashing = false;
+        blockColliderCount = 0;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "BlockContainer")
+        {
+            Debug.Log("Collision enter: " + blockColliderCount);
+            blockColliderCount++;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "BlockContainer")
+        {
+            Debug.Log("Collision exit: " + blockColliderCount);
+            blockColliderCount--;
+        }
     }
 }

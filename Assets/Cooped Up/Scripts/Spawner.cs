@@ -25,7 +25,10 @@ public class Spawner : MonoBehaviour {
 
     public GameObject[] tree = new GameObject[2];
 
-	public float spawnDelay;
+    public GameObject[] rocks = new GameObject[2];
+
+	public float initSpawnDelay;
+    private float spawnDelay;
 	public Transform blockParent;
     private float screenHalfWidth;
     private float nextSpawnTime;
@@ -36,6 +39,7 @@ public class Spawner : MonoBehaviour {
 	/// </summary>
 	void Start()
 	{
+        spawnDelay = initSpawnDelay;
         screenHalfWidth = Camera.main.ScreenToWorldPoint(new Vector2(Camera.main.pixelWidth,0)).x;
 	}
     
@@ -46,12 +50,12 @@ public class Spawner : MonoBehaviour {
 		if (!waitingSpawn) {
             if(itemSpawn.Count == 0)
             {
-                specialQueueIncrement %= 30;
-                if(specialQueueIncrement == 20)
+                specialQueueIncrement %= 20;
+                if(specialQueueIncrement == 19)
                 {
                     QueueStairs();
                 }
-                else if(specialQueueIncrement == 15)
+                else if(specialQueueIncrement == 10)
                 {
                     QueueDivider();
                 }
@@ -83,33 +87,44 @@ public class Spawner : MonoBehaviour {
 
     private void QueueDivider()
     {
-        for (int i = 0; i < 20; i++)
+        Vector2 randPosition = new Vector2(Random.Range(-screenHalfWidth, screenHalfWidth), transform.position.y);
+        for (int i = 0; i < 2; i++)
         {
-            itemSpawn.Enqueue(new SpawnItem(tree[0], transform.position, 0.4f));
+            itemSpawn.Enqueue(new SpawnItem(tree[0], randPosition, 0.4f));
+            itemSpawn.Enqueue(new SpawnItem(tree[0], randPosition, 0.4f));
+            itemSpawn.Enqueue(new SpawnItem(tree[1], randPosition, 0.4f));
+            itemSpawn.Enqueue(new SpawnItem(tree[0], randPosition, 0.4f));
+            itemSpawn.Enqueue(new SpawnItem(tree[0], randPosition, 0.4f));
+            itemSpawn.Enqueue(new SpawnItem(tree[2], randPosition, 0.4f));
         }
-        itemSpawn.Enqueue(new SpawnItem(tree[1], transform.position, 3f));
+        itemSpawn.Enqueue(new SpawnItem(tree[3], randPosition, spawnDelay));
     }
 
     private void QueueStairs()
     {
         int slices = 5;
+        byte rockToggle = 0;
         float widthIncrement = screenHalfWidth / slices;
         if (Random.value > 0.5f)
         {
-            for (int i = -slices; i < slices; i++)
+            for (int i = -slices; i < 0; i++)
             {
                 float time = 1f;
                 if (i == slices - 1) time = 2.5f;
-                itemSpawn.Enqueue(new SpawnItem(debris[2], new Vector2(transform.position.x + (i * widthIncrement), transform.position.y), time));
+                itemSpawn.Enqueue(new SpawnItem(rocks[rockToggle++], new Vector2(transform.position.x + (i * widthIncrement), transform.position.y), time));
+
+                rockToggle %= 2;
             }
         }
         else
         {
-            for (int i = slices; i > -slices; i--)
+            for (int i = slices; i > 0; i--)
             {
                 float time = 1f;
                 if (i == -slices + 1) time = 2.5f;
-                itemSpawn.Enqueue(new SpawnItem(debris[2], new Vector2(transform.position.x + (i * widthIncrement), transform.position.y), time));
+                itemSpawn.Enqueue(new SpawnItem(rocks[rockToggle++], new Vector2(transform.position.x + (i * widthIncrement), transform.position.y), time));
+
+                rockToggle %= 2;
             }
         }
     }
@@ -117,10 +132,7 @@ public class Spawner : MonoBehaviour {
     private void QueueRandom()
     {
 		GameObject randSpawn = debris[Random.Range(0, debris.Count)];
-		Vector3 randPos = new Vector2(Random.Range(- screenHalfWidth, 
-												   screenHalfWidth), 
-									  transform.position.y);
-        itemSpawn.Enqueue(new SpawnItem(randSpawn, randPos, nextSpawnTime));
+        itemSpawn.Enqueue(new SpawnItem(randSpawn, GetRandomPosition(), nextSpawnTime));
     }
 
     IEnumerator SpawnWait(float time)
@@ -133,6 +145,18 @@ public class Spawner : MonoBehaviour {
     public void Reset()
     {
         if(itemSpawn != null)itemSpawn.Clear();
+        spawnDelay = initSpawnDelay;
         specialQueueIncrement = 0;
+    }
+
+    private Vector2 GetRandomPosition()
+    {
+        float p1X = GameObject.Find("Player1").transform.position.x;
+        float p2X = GameObject.Find("Player2").transform.position.x;
+        float midPoint = Mathf.Abs(p1X - p2X);
+        float position = Random.Range(midPoint - screenHalfWidth / 1.5f, midPoint + screenHalfWidth / 1.5f);
+        Debug.Log("p1: " + p1X + " p2X: " + p2X);
+        Debug.Log("randpos: " + position);
+        return new Vector2(position, transform.position.y);
     }
 }

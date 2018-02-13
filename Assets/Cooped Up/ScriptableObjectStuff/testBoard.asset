@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6fc0f4177d2b348b0343e9bcefe251, type: 3}
   m_Name: testBoard
   m_EditorClassIdentifier: 
-  scores: 06000000
+  scores: 0f000000
   maxScores: 1

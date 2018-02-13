@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour {
 	void Update () {
         if(highestPoint.y < Camera.main.transform.position.y && referenceObjects.mainGameScreen.activeSelf)
         {
-            Camera.main.backgroundColor = Color.Lerp(colors.originalColor, colors.targetColor, (highestPoint.y - originalPoint.y)/250);
+            Camera.main.backgroundColor = Color.Lerp(colors.originalColor, colors.targetColor, (highestPoint.y - originalPoint.y)/150);
             highestPoint = Camera.main.transform.position;
         }
 

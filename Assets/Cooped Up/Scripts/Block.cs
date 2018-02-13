@@ -28,12 +28,13 @@ public class Block : MonoBehaviour {
 		if (other.transform.tag == "Player")
 		{
             Player player = other.transform.GetComponent<Player>();
-            if(player.controller.collisions.below)
+            
+            if (player.controller.collisions.below)
             {
+                if(transform.position.y > other.transform.position.y)
                 GameObject.Find("GameManager").GetComponent<GameController>().GameOver();
-                //other.transform.GetComponent<GamePlayer>().Die();
             }
-		}
+        }
 	}
 
     private void OnCollisionStay2D(Collision2D other)

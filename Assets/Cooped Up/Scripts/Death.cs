@@ -2,22 +2,19 @@
 
 public class Death : MonoBehaviour {
     public float initialSpeed = 2f;
-    public float acceleration = 0.01f;
+    public Vector3 originalPos;
 
     private float speed;
     
     public void Reset()
     {
-        transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
         speed = initialSpeed;
+        transform.position = originalPos;
     }
 
     // Update is called once per frame
     void Update () {
-		var x = this.transform.localScale;
-		x.y += speed * Time.deltaTime;
-		speed += acceleration;
-		this.transform.localScale = x;
+        transform.Translate(Vector2.up * (speed * Time.deltaTime));
 	}
 
 	/// <summary>
@@ -30,7 +27,7 @@ public class Death : MonoBehaviour {
         if (other.transform.tag == "Player")
 		{
             GameObject.Find("GameManager").GetComponent<GameController>().GameOver();
-			//other.GetComponent<GamePlayer>().Die(); 
 		}
     }
+    
 }
