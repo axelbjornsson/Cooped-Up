@@ -38,6 +38,9 @@ public class GameController : MonoBehaviour {
     }
     public ObjectReferences referenceObjects;
 
+    private bool gameWon;
+    public GameObject WinText;
+
     private Vector2[] playerPositions;
 	// Use this for initialization
 	void Start () {
@@ -55,6 +58,13 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(Camera.main.transform.position.y > 40)
+        {
+            gameWon = true;
+            Debug.Log(Camera.main.transform.position.y);
+            GameObject.Find("Win text").SetActive(true);
+        }
+
         if(highestPoint.y < Camera.main.transform.position.y && referenceObjects.mainGameScreen.activeSelf)
         {
             Camera.main.backgroundColor = Color.Lerp(colors.originalColor, colors.targetColor, (highestPoint.y - originalPoint.y)/150);
@@ -65,7 +75,7 @@ public class GameController : MonoBehaviour {
         {
             Application.Quit();
         }
-        if(state == 0 || state == 2)
+        if(state == 0 || state == 2 || gameWon)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.R))
             {
@@ -133,5 +143,8 @@ public class GameController : MonoBehaviour {
         referenceObjects.players[1].gameObject.SetActive(true);
         
         referenceObjects.spawner.GetComponent<Spawner>().Reset();
+
+        gameWon = false;
+        WinText.SetActive(false);
     }
 }

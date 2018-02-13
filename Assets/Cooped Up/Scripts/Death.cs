@@ -14,6 +14,7 @@ public class Death : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if(transform.position.y < 35)
         transform.Translate(Vector2.up * (speed * Time.deltaTime));
 	}
 

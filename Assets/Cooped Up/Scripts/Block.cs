@@ -31,7 +31,7 @@ public class Block : MonoBehaviour {
             
             if (player.controller.collisions.below)
             {
-                if(transform.position.y > other.transform.position.y)
+                if (transform.position.y > other.transform.position.y) 
                 GameObject.Find("GameManager").GetComponent<GameController>().GameOver();
             }
         }

@@ -33,6 +33,7 @@ public class Spawner : MonoBehaviour {
     private float screenHalfWidth;
     private float nextSpawnTime;
     private int specialQueueIncrement;
+    private float cameraPos;
 	/// <summary>
 	/// Start is called on the frame when a script is enabled just before
 	/// any of the Update methods is called the first time.
@@ -45,43 +46,37 @@ public class Spawner : MonoBehaviour {
     
     // Update is called once per frame
     void FixedUpdate () {
-        //transform.Translate(new Vector2(0, 0.01f));
-
-		if (!waitingSpawn) {
-            if(itemSpawn.Count == 0)
+        cameraPos = Camera.main.transform.position.y;
+        if(cameraPos < 40)
+        {
+            if (!waitingSpawn)
             {
-                specialQueueIncrement %= 20;
-                if(specialQueueIncrement == 19)
+                if (itemSpawn.Count == 0)
                 {
-                    QueueStairs();
-                }
-                else if(specialQueueIncrement == 10)
-                {
-                    QueueDivider();
+                    specialQueueIncrement %= 20;
+                    if (specialQueueIncrement == 19)
+                    {
+                        QueueStairs();
+                    }
+                    else if (specialQueueIncrement == 10)
+                    {
+                        QueueDivider();
+                    }
+                    else
+                    {
+                        QueueRandom();
+                        spawnDelay -= 0.008f;
+                        nextSpawnTime = spawnDelay;
+                    }
+                    specialQueueIncrement++;
                 }
                 else
                 {
-                    QueueRandom();
-                    spawnDelay -= 0.008f;
-                    nextSpawnTime = spawnDelay;
+                    SpawnItem nextItem = itemSpawn.Dequeue();
+                    Instantiate(nextItem.item, nextItem.position, Quaternion.identity, blockParent);
+                    StartCoroutine(SpawnWait(nextItem.time));
                 }
-                specialQueueIncrement++;
             }
-            else
-            {
-                SpawnItem nextItem = itemSpawn.Dequeue();
-                Instantiate(nextItem.item, nextItem.position, Quaternion.identity, blockParent);
-                StartCoroutine(SpawnWait(nextItem.time));
-            }
-        }
-
-        if(Input.GetKeyDown("space"))
-        {
-            QueueStairs();
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            QueueDivider();
         }
     }
 
@@ -155,8 +150,6 @@ public class Spawner : MonoBehaviour {
         float p2X = GameObject.Find("Player2").transform.position.x;
         float midPoint = Mathf.Abs(p1X - p2X);
         float position = Random.Range(midPoint - screenHalfWidth / 1.5f, midPoint + screenHalfWidth / 1.5f);
-        Debug.Log("p1: " + p1X + " p2X: " + p2X);
-        Debug.Log("randpos: " + position);
         return new Vector2(position, transform.position.y);
     }
 }
