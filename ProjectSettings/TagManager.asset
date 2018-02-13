@@ -9,6 +9,7 @@ TagManager:
   - CompoundBlock
   - BlockContainer
   - Spawner
+  - SoundManager
   layers:
   - Default
   - TransparentFX

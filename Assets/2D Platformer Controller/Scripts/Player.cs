@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
 
     private Animator anim;
+    private SoundManager soundManager;
 
     public float maxJumpHeight = 4f;
     public float minJumpHeight = 1f;
@@ -60,6 +61,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
         anim = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -128,8 +130,10 @@ public class Player : MonoBehaviour
 
     public void OnJumpInputDown()
     {
+        bool jumpingNow = false;
         if (wallSliding)
         {
+            jumpingNow = true;
             if (wallDirX == directionalInput.x)
             {
                 velocity.x = -wallDirX * wallJumpClimb.x;
@@ -150,16 +154,20 @@ public class Player : MonoBehaviour
 
         if (controller.collisions.below)
         {
+            jumpingNow = true;
             if (anim) anim.SetBool("Grounded", false);
             velocity.y = maxJumpVelocity;
             isDoubleJumping = false;
         }
         if (canDoubleJump && !controller.collisions.below && !isDoubleJumping && !wallSliding)
         {
+            jumpingNow = true;
             if (anim) anim.SetTrigger("DoubleJump");
             velocity.y = maxJumpVelocity;
             isDoubleJumping = true;
         }
+
+        if (jumpingNow) soundManager.PlayJump();
     }
 
     public void Bounce(float bounciness)
@@ -224,6 +232,7 @@ public class Player : MonoBehaviour
     {
         if(!hasDashed)
         {
+            soundManager.PlayJump();
             if (anim) anim.SetBool("Dashing", true);
             hasDashed = true;
             dashing = true;

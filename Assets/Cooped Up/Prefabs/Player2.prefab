@@ -245,8 +245,10 @@ MonoBehaviour:
   wallStickTime: 0.25
   playerType: 0
   controller: {fileID: 0}
+  directionalInput: {x: 0, y: 0}
   dashSpeed: 30
   otherPlayerCollider: {fileID: 0}
+  blockColliderCount: 0
 --- !u!212 &212812628286534468
 SpriteRenderer:
   m_ObjectHideFlags: 1
