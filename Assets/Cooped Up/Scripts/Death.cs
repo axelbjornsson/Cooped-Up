@@ -27,6 +27,7 @@ public class Death : MonoBehaviour {
 	{
         if (other.transform.tag == "Player")
 		{
+            other.transform.GetComponent<Player>().Die();
             GameObject.Find("GameManager").GetComponent<GameController>().GameOver();
 		}
     }

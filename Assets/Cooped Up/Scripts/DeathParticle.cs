@@ -15,19 +15,19 @@ public class DeathParticle : MonoBehaviour {
 
         transform.Rotate(0.0f, 0.0f, Random.Range(0.0f, 360.0f));
 
-        transform.Translate(new Vector2(radius,0));
+        transform.Translate(Vector2.up*radius); 
 
         StartCoroutine(TimedDestruction());
     }
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void FixedUpdate () {
+        transform.Translate(Vector2.up * speed);
+    }
 
     IEnumerator TimedDestruction()
     {
         yield return new WaitForSeconds(1);
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

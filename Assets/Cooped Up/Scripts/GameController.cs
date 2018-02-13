@@ -41,6 +41,8 @@ public class GameController : MonoBehaviour {
     private bool gameWon;
     public GameObject WinText;
 
+    public GameObject digParticle;
+
     private Vector2[] playerPositions;
 	// Use this for initialization
 	void Start () {
@@ -106,7 +108,7 @@ public class GameController : MonoBehaviour {
 
     IEnumerator GameOverEnumerator()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(1);
         state = 2;
 
         Camera.main.backgroundColor = colors.hiScoreScreenColor;
