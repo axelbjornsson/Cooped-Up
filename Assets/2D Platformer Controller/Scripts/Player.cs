@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public int blockColliderCount;
 
+    public GameObject DeathParticle;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -276,5 +277,19 @@ public class Player : MonoBehaviour
             Debug.Log("Collision exit: " + blockColliderCount);
             blockColliderCount--;
         }
+    }
+
+    public void Die()
+    {
+
+        for (int i = 0; i<20; i++)
+        {
+            DeathParticle.transform.position = transform.position;
+            DeathParticle.GetComponent<DeathParticle>().speed = 0.4f;
+            DeathParticle.GetComponent<DeathParticle>().radius = Random.Range(0.5f, 1f);
+            GameObject particle = Instantiate(DeathParticle);
+            
+        }
+        gameObject.SetActive(false);
     }
 }

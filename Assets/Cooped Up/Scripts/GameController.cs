@@ -101,6 +101,12 @@ public class GameController : MonoBehaviour {
 
     public void GameOver()
     {
+        StartCoroutine(GameOverEnumerator());
+    }
+
+    IEnumerator GameOverEnumerator()
+    {
+        yield return new WaitForSeconds(4);
         state = 2;
 
         Camera.main.backgroundColor = colors.hiScoreScreenColor;

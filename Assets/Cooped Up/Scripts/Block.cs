@@ -31,8 +31,12 @@ public class Block : MonoBehaviour {
             
             if (player.controller.collisions.below)
             {
-                if (transform.position.y > other.transform.position.y) 
-                GameObject.Find("GameManager").GetComponent<GameController>().GameOver();
+                if (transform.position.y > other.transform.position.y)
+                {
+                    Debug.Log("player died");
+                    player.Die();
+                    GameObject.Find("GameManager").GetComponent<GameController>().GameOver();
+                }
             }
         }
 	}

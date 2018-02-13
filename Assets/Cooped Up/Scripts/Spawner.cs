@@ -146,10 +146,15 @@ public class Spawner : MonoBehaviour {
 
     private Vector2 GetRandomPosition()
     {
-        float p1X = GameObject.Find("Player1").transform.position.x;
-        float p2X = GameObject.Find("Player2").transform.position.x;
-        float midPoint = Mathf.Abs(p1X - p2X);
-        float position = Random.Range(midPoint - screenHalfWidth / 1.5f, midPoint + screenHalfWidth / 1.5f);
-        return new Vector2(position, transform.position.y);
+        if (GameObject.Find("Player1") && GameObject.Find("Player2"))
+        {
+            float p1X = GameObject.Find("Player1").transform.position.x;
+            float p2X = GameObject.Find("Player2").transform.position.x;
+            float midPoint = Mathf.Abs(p1X - p2X);
+            float position = Random.Range(midPoint - screenHalfWidth / 1.5f, midPoint + screenHalfWidth / 1.5f);
+            return new Vector2(position, transform.position.y);
+        }
+        else return transform.position;
+        
     }
 }
